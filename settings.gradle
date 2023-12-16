@@ -1,0 +1,27 @@
+pluginManagement {
+	repositories {
+		maven {
+			name = 'Fabric'
+			url = 'https://maven.fabricmc.net/'
+		}
+		mavenCentral()
+		gradlePluginPortal()
+		maven {
+			url = "https://maven.kikugie.dev/third-party"
+		}
+
+	}
+}
+
+plugins {
+	id 'io.shcm.shsupercm.fabric.stonecutter' version '1.5-dev.5'
+}
+
+stonecutter {
+	shared {
+		versions '1.20.2', '1.20.1', '1.19.4'
+		vcsVersion '1.20.2'
+	}
+
+	create rootProject
+}

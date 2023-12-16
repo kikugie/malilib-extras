@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "id": "${id}",
+  "version": "${mod_version}",
+  "name": "${display}",
+  "description": "",
+  "authors": [
+    "KikuGie"
+  ],
+  "contact": {
+  },
+  "license": "MIT",
+  "icon": "assets/template/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "dev.kikugie.template.ModInit"
+    ]
+  },
+  "mixins": [
+    "template.mixins.json"
+  ],
+  "depends": {
+    "minecraft": "${target_minecraft}",
+    "fabric-language-kotlin": ">=${flk}",
+    "fabric-api": "*"
+  },
+  "custom": {
+    "modmenu": {
+      "links": {
+        "modmenu.discord": "https://discord.gg/TBgNUCfryS"
+      }
+    },
+    "projects": {
+      "modrinth": "${modrinth}"
+    }
+  }
+}
