@@ -10,20 +10,24 @@
   "contact": {
   },
   "license": "MIT",
-  "icon": "assets/template/icon.png",
+  "icon": "assets/malilib_extras/icon.png",
   "environment": "*",
   "entrypoints": {
-    "main": [
-      "dev.kikugie.template.ModInit"
+    "modmenu": [
+      {
+        "adapter": "kotlin",
+        "value": "dev.kikugie.malilib_extras.impl.config.ModMenuPlugin"
+      }
     ]
   },
   "mixins": [
-    "template.mixins.json"
+    "malilib_extras.mixins.json"
   ],
   "depends": {
     "minecraft": "${target_minecraft}",
     "fabric-language-kotlin": ">=${flk}",
-    "fabric-api": "*"
+    "fabric-api": "*",
+    "malilib": "~${malilib}"
   },
   "custom": {
     "modmenu": {

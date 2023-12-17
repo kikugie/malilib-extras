@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "id": "testmod",
+  "version": "0.0.0",
+  "name": "Test Mod",
+  "description": "",
+  "authors": [
+    "KikuGie"
+  ],
+  "license": "MIT",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      {
+        "adapter": "kotlin",
+        "value": "dev.kikugie.testmod.ModInit"
+      }
+    ]
+  }
+}
