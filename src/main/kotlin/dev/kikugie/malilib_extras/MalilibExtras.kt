@@ -1,10 +1,12 @@
 package dev.kikugie.malilib_extras
 
-import net.fabricmc.api.ModInitializer
+import dev.kikugie.malilib_extras.impl.config.MalilibInit
+import net.fabricmc.api.ClientModInitializer
 import org.slf4j.LoggerFactory
 
-object MalilibExtras : ModInitializer {
+object MalilibExtras : ClientModInitializer {
     val LOGGER = LoggerFactory.getLogger("malilib-extras")
-    override fun onInitialize() {
+    override fun onInitializeClient() {
+        MalilibInit.init()
     }
 }

@@ -6,7 +6,6 @@ import dev.kikugie.malilib_extras.api.annotation.Exclude
 import dev.kikugie.malilib_extras.api.config.ConfigBuilder
 import dev.kikugie.malilib_extras.api.config.ConfigEntry
 import dev.kikugie.malilib_extras.api.config.MalilibConfig
-import dev.kikugie.malilib_extras.util.TranslationUtils.translation
 import dev.kikugie.malilib_extras.util.restriction.SimpleRestrictionChecker
 import fi.dy.masa.malilib.config.IConfigBase
 import me.fallenbreath.conditionalmixin.api.annotation.Restriction
@@ -17,10 +16,10 @@ import kotlin.reflect.KProperty
 import kotlin.reflect.full.declaredMemberProperties
 import kotlin.reflect.full.findAnnotation
 
-open class ConfigBuilderImpl(final override val id: String, override val version: String) : ConfigBuilder {
-    override val titleKey: String = "$id.config.title"
-    override val categoryKey: (String) -> String = { "$id.config.title.$it" }
-    override val categoryDescriptionKey: (String) -> String = { "$id.config.title.$it.desc" }
+open class ConfigBuilderImpl(final override val id: String, override var version: String = "") : ConfigBuilder {
+    override var titleKey: String = "$id.config.title"
+    override var categoryKey: (String) -> String = { "$id.config.title.$it" }
+    override var categoryDescriptionKey: (String) -> String = { "$id.config.title.$it.desc" }
 
     private val categories = mutableMapOf<String, MutableList<ConfigEntry>>().withDefault { ArrayList() }
     private val options = ArrayList<ConfigEntry>()
@@ -32,14 +31,14 @@ open class ConfigBuilderImpl(final override val id: String, override val version
         val cats = categories.map { (key, _) ->
             ConfigCategoryImpl(
                 key,
-                categoryKey(key).translation(),
-                categoryDescriptionKey(key).translation()
+                categoryKey(key),
+                categoryDescriptionKey(key)
             )
         }
         return MalilibConfigImpl(
             id,
             version,
-            titleKey.translation(),
+            titleKey,
             cats,
             categories,
             options

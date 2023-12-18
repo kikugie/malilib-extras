@@ -34,7 +34,6 @@ object SimpleRestrictionChecker : RestrictionChecker {
             MIXIN -> throw IllegalArgumentException("Mixin checker is not supported for runtime conditions")
         }
 
-
     private fun checkMod(condition: Condition): CheckResult {
         val modid = condition.value
         require(modid.isNotBlank()) { "Mod ID must not be blank for the type MOD" }

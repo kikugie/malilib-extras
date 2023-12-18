@@ -3,5 +3,5 @@ package dev.kikugie.malilib_extras.util
 import net.fabricmc.loader.api.FabricLoader
 
 object FabricUtils {
-    val fabric = FabricLoader.getInstance()
+    val fabric: FabricLoader = FabricLoader.getInstance()
 }

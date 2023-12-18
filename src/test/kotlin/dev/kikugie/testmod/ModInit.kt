@@ -6,9 +6,11 @@ import net.fabricmc.api.ModInitializer
 
 object ModInit : ModInitializer {
     private val MOD_ID = "testmod"
-    private lateinit var config: MalilibConfig
+    lateinit var config: MalilibConfig
+        private set
     override fun onInitialize() {
         config = MalilibConfig.create(MOD_ID, "0.0.0") {
+            titleKey = "$id.title"
             register(ModConfig::class)
         }
         ConfigRegistry.register(config)

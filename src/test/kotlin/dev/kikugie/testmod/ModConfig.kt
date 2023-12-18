@@ -5,7 +5,10 @@ import dev.kikugie.malilib_extras.api.option.OptionFactory
 import fi.dy.masa.malilib.config.options.ConfigBoolean
 import fi.dy.masa.malilib.config.options.ConfigInteger
 
-@Category("test")
+const val GENERAL = "general"
+const val TWEAKS = "tweaks"
+
+@Category(GENERAL)
 object ModConfig {
     private val factory = OptionFactory("test")
 

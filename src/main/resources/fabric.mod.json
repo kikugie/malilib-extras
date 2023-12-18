@@ -11,12 +11,18 @@
   },
   "license": "MIT",
   "icon": "assets/malilib_extras/icon.png",
-  "environment": "*",
+  "environment": "client",
   "entrypoints": {
     "modmenu": [
       {
         "adapter": "kotlin",
         "value": "dev.kikugie.malilib_extras.impl.config.ModMenuPlugin"
+      }
+    ],
+    "client": [
+      {
+        "adapter": "kotlin",
+        "value": "dev.kikugie.malilib_extras.MalilibExtras"
       }
     ]
   },
