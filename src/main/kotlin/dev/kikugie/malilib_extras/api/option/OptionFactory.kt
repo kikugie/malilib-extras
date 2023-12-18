@@ -2,7 +2,6 @@ package dev.kikugie.malilib_extras.api.option
 
 import dev.kikugie.malilib_extras.impl.option.*
 import dev.kikugie.malilib_extras.util.TranslationKey
-import fi.dy.masa.malilib.config.IConfigBase
 import fi.dy.masa.malilib.config.options.*
 import fi.dy.masa.malilib.hotkeys.KeybindSettings
 import fi.dy.masa.malilib.util.Color4f

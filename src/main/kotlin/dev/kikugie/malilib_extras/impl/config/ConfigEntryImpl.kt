@@ -5,7 +5,7 @@ import dev.kikugie.malilib_extras.util.restriction.RestrictionChecker
 import fi.dy.masa.malilib.config.IConfigBase
 import me.fallenbreath.conditionalmixin.api.annotation.Restriction
 
-open class ConfigEntryImpl(
+data class ConfigEntryImpl(
     override val config: IConfigBase,
     override val restriction: Restriction?,
     override val check: RestrictionChecker.Result,

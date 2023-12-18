@@ -171,7 +171,9 @@ if (stonecutter.current().isActiveVersion()) {
         runs {
             testClient {
                 client()
+                ideConfigGenerated = true
                 name = "Testmod Client"
+                runDir "../../run"
                 source sourceSets.test
             }
         }

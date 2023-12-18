@@ -1,5 +1,6 @@
 package dev.kikugie.malilib_extras.impl.config
 
+import dev.kikugie.malilib_extras.MalilibExtras
 import dev.kikugie.malilib_extras.api.annotation.Category
 import dev.kikugie.malilib_extras.api.annotation.DevOnly
 import dev.kikugie.malilib_extras.api.annotation.Exclude
@@ -9,22 +10,20 @@ import dev.kikugie.malilib_extras.api.config.MalilibConfig
 import dev.kikugie.malilib_extras.util.restriction.SimpleRestrictionChecker
 import fi.dy.masa.malilib.config.IConfigBase
 import me.fallenbreath.conditionalmixin.api.annotation.Restriction
-import org.slf4j.Logger
-import org.slf4j.LoggerFactory
 import kotlin.reflect.KClass
 import kotlin.reflect.KProperty
 import kotlin.reflect.full.declaredMemberProperties
 import kotlin.reflect.full.findAnnotation
 
-open class ConfigBuilderImpl(final override val id: String, override var version: String = "") : ConfigBuilder {
+class ConfigBuilderImpl(override val id: String, override var version: String = "") : ConfigBuilder {
     override var titleKey: String = "$id.config.title"
     override var categoryKey: (String) -> String = { "$id.config.title.$it" }
     override var categoryDescriptionKey: (String) -> String = { "$id.config.title.$it.desc" }
 
     private val categories = mutableMapOf<String, MutableList<ConfigEntry>>().withDefault { ArrayList() }
     private val options = ArrayList<ConfigEntry>()
-    override fun register(vararg categories: KClass<*>) {
-        categories.forEach { processClass(it) }
+    override fun register(vararg classes: KClass<*>) {
+        classes.forEach { processClass(it) }
     }
 
     fun build(): MalilibConfig {
@@ -83,7 +82,17 @@ open class ConfigBuilderImpl(final override val id: String, override var version
         )
     }
 
+    override fun toString() = "${this::class.simpleName.toString()}(" + buildString {
+        append("id = $id, ")
+        append("version = $version, ")
+        append("titleKey = $titleKey, ")
+        append("categoryKey = ${categoryKey("\$it")}, ")
+        append("categoryDescriptionKey = ${categoryDescriptionKey("\$it")}, ")
+        append("categories = $categories, ")
+        append("options = $options, ")
+    } + ")"
+
     companion object {
-        private val LOGGER: Logger = LoggerFactory.getLogger(ConfigBuilder::class.simpleName)
+        private val LOGGER = MalilibExtras.logger(this::class)
     }
 }

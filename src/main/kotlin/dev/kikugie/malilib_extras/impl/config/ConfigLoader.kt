@@ -2,30 +2,28 @@ package dev.kikugie.malilib_extras.impl.config
 
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
+import dev.kikugie.malilib_extras.MalilibExtras
 import dev.kikugie.malilib_extras.api.config.MalilibConfig
 import dev.kikugie.malilib_extras.util.FabricUtils
 import fi.dy.masa.malilib.config.ConfigUtils
 import fi.dy.masa.malilib.config.IConfigHandler
 import fi.dy.masa.malilib.util.JsonUtils
-import org.slf4j.Logger
-import org.slf4j.LoggerFactory
 import kotlin.io.path.exists
 import kotlin.io.path.isReadable
 import kotlin.io.path.isRegularFile
 import kotlin.io.path.reader
 
 class ConfigLoader(val config: MalilibConfig) : IConfigHandler {
-    private val LOGGER: Logger = LoggerFactory.getLogger(ConfigLoader::class.simpleName)
+    private val LOGGER = MalilibExtras.logger(this::class)
     override fun load() {
+        LOGGER.debug("Loading config ${config.id}")
         val file = FabricUtils.fabric.configDir.resolve("${config.id}.json")
-        if (!file.exists() || !file.isRegularFile() || !file.isReadable()) {
+        if (!file.exists() || !file.isRegularFile() || !file.isReadable())
             LOGGER.debug("Config file {} doesn't exist, skipping", file)
-
-            try {
-                loadConfig(JsonParser.parseReader(file.reader()).asJsonObject)
-            } catch (e: Exception) {
-                LOGGER.warn("Failed to parse config file $file: ${e.message}")
-            }
+        else try {
+            loadConfig(JsonParser.parseReader(file.reader()).asJsonObject)
+        } catch (e: Exception) {
+            LOGGER.warn("Failed to parse config file $file: ", e)
         }
     }
 
@@ -36,6 +34,7 @@ class ConfigLoader(val config: MalilibConfig) : IConfigHandler {
     }
 
     override fun save() {
+        LOGGER.debug("Saving config ${config.id}")
         val file = FabricUtils.fabric.configDir.resolve("${config.id}.json")
         JsonUtils.writeJsonToFile(saveConfig(), file.toFile())
     }

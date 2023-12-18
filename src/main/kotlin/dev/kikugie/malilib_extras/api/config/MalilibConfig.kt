@@ -71,11 +71,6 @@ interface MalilibConfig {
      */
     val entries: List<ConfigEntry>
 
-    /**
-     * Direct access to all options.
-     */
-    val options: List<IConfigBase>
-
     companion object {
         /**
          * Returns a default [ConfigBuilder]. Use [Kotlin type-safe builders](https://kotlinlang.org/docs/type-safe-builders.html) for configuration.
