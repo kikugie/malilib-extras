@@ -11,6 +11,9 @@ import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
 
+/**
+ * Option comments in Malilib are hardcoded to "config.comment.$name". This allows overriding the key.
+ */
 @Environment(EnvType.CLIENT)
 @Mixin(value = ConfigBase.class, remap = false)
 public abstract class ConfigBaseMixin implements ConfigCommentAccessor {
