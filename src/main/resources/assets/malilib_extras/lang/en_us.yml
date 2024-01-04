@@ -1,7 +1,7 @@
 malilib_extras:
   condition:
-    not_found: %s is missing
-    version_match: %s matches version %s
-    version_mismatch: %s doesn't match version %s
-    test_success: %s succeeded
-    test_fail: %s failed
+    not_found: "%s is missing"
+    version_match: "%s matches version %s"
+    version_mismatch: "%s doesn't match version %s"
+    test_success: "%s succeeded"
+    test_fail: "%s failed"
