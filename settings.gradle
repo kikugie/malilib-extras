@@ -25,3 +25,4 @@ stonecutter {
 
 	create rootProject
 }
+rootProject.name = "Malilib Extras"
