@@ -10,7 +10,7 @@ const val TWEAKS = "tweaks"
 
 @Category(GENERAL)
 object ModConfig {
-    private val factory = OptionFactory("test")
+    private val factory = OptionFactory.compact("test")
 
     val boolOpt = factory.create<ConfigBoolean>("boolOpt", true)
     val intOpt1 = factory.create<ConfigInteger>("intOpt1", 1)
