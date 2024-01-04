@@ -23,7 +23,7 @@ object ConfigRegistry {
      * @param gui Config screen provider. Accepts the parent screen and current config. Default is [MalilibConfigGui]
      * @throws IllegalArgumentException if config is registered when frozen.
      */
-    fun register(config: MalilibConfig, modmenu: Boolean = true, gui: (Screen?) -> Screen) {
+    fun register(config: MalilibConfig, modmenu: Boolean = true, gui: ((Screen?) -> Screen)? = null) {
         if (frozen) throw IllegalStateException("Config registry is already frozen. Config must be registered in the mod initializer")
         data.add(ConfigData(config, modmenu, gui))
     }

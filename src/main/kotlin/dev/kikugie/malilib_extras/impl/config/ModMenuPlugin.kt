@@ -8,5 +8,5 @@ object ModMenuPlugin : ModMenuApi {
     override fun getProvidedConfigScreenFactories(): Map<String, ConfigScreenFactory<*>> =
         ConfigRegistry.data
             .filter { it.modmenu }
-            .associate { it.config.id to ConfigScreenFactory { parent -> it.gui(parent) } }
+            .associate { it.config.id to ConfigScreenFactory { parent -> it.gui?.invoke(parent) } }
 }

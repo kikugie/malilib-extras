@@ -13,6 +13,6 @@ object ModInit : ModInitializer {
             titleKey = "$id.title"
             register(ModConfig::class)
         }
-        ConfigRegistry.register(config)
+        ConfigRegistry.register(config, false)
     }
 }
