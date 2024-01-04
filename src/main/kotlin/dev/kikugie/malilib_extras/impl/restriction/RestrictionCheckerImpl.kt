@@ -6,8 +6,17 @@ import dev.kikugie.malilib_extras.util.translation
 import net.fabricmc.loader.api.metadata.version.VersionPredicate
 import kotlin.reflect.KClass
 
+/**
+ * // dev info
+ * ## Translations:
+ * - `malilib_extras.condition.not_found(mod_id)`
+ * - `malilib_extras.condition.version_match(mod_id, version)`
+ * - `malilib_extras.condition.version_mismatch(mod_id, version)`
+ * - `malilib_extras.condition.test_success(class_name)`
+ * - `malilib_extras.condition.test_fail(class_name)`
+ */
 object RestrictionCheckerImpl : RestrictionChecker {
-    private val formatter: (String) -> String = {"malilib_extras.condition.$it"}
+    private val formatter: (String) -> String = { "malilib_extras.condition.$it" }
     override fun testRestriction(restriction: Restriction?): TestResult {
         if (restriction == null) return TestResult(true)
         val fails = mutableListOf<TestResult>()
@@ -47,11 +56,11 @@ object RestrictionCheckerImpl : RestrictionChecker {
     }
 
     private fun runTester(tester: KClass<out Tester>): TestResult {
-        val constructor = tester.constructors.firstOrNull { it.parameters.isEmpty() }
-        requireNotNull(constructor) {
-            "Tester must have a constructor with no arguments to run the check"
+        val impl = tester.objectInstance ?: tester.constructors.firstOrNull { it.parameters.isEmpty() }?.call()
+        requireNotNull(impl) {
+            "Tester must be a Kotlin object or have a constructor with no arguments to run the check"
         }
-        val result = constructor.call().test()
+        val result = impl.test()
         val key = if (result) "test_success" else "test_fail"
         return TestResult(result, formatter(key).translation(tester.simpleName ?: "???"))
     }

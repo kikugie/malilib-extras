@@ -1,7 +1,7 @@
 malilib_extras:
   condition:
-    reason:
-      not_found: "%s is not found"
-      version_mismatch: "%s@%s doesn't match predicate %s"
-      unsupported: "Conflicting mod %s@%s"
-      test: "Tester result = %s"
+    not_found: %s is missing
+    version_match: %s matches version %s
+    version_mismatch: %s doesn't match version %s
+    test_success: %s succeeded
+    test_fail: %s failed

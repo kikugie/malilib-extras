@@ -31,6 +31,10 @@ interface ConfigBuilder {
      * Translation key formatter for category descriptions. Defaults to `$id.config.title.$category.desc`.
      */
     var categoryDescriptionKey: (String) -> TranslationKey
+
+    /**
+     * [RestrictionChecker] used by the builder. Defaults to [RestrictionChecker.standard]
+     */
     var restrictionChecker: RestrictionChecker
 
     /**
