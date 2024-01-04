@@ -3,7 +3,6 @@ package dev.kikugie.malilib_extras.api.config
 import dev.kikugie.malilib_extras.impl.config.ConfigData
 import dev.kikugie.malilib_extras.impl.config.MalilibInit
 import dev.kikugie.malilib_extras.impl.config.ModMenuPlugin
-import dev.kikugie.malilib_extras.impl.gui.MalilibConfigGui
 import net.minecraft.client.gui.screen.Screen
 
 /**
@@ -24,7 +23,7 @@ object ConfigRegistry {
      * @param gui Config screen provider. Accepts the parent screen and current config. Default is [MalilibConfigGui]
      * @throws IllegalArgumentException if config is registered when frozen.
      */
-    fun register(config: MalilibConfig, modmenu: Boolean = true, gui: (Screen?) -> Screen = { MalilibConfigGui(config, it) }) {
+    fun register(config: MalilibConfig, modmenu: Boolean = true, gui: (Screen?) -> Screen) {
         if (frozen) throw IllegalStateException("Config registry is already frozen. Config must be registered in the mod initializer")
         data.add(ConfigData(config, modmenu, gui))
     }
