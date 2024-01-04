@@ -8,7 +8,7 @@ plugins {
 }
 
 archivesBaseName = property("mod.name")
-version = "${property("mod.version")}+${stonecutter.current().version()}"
+version = "${property("mod.version")}+${stonecutter.current.version}"
 group = property("mod.maven_group")
 
 base {
@@ -50,14 +50,14 @@ repositories {
 }
 
 dependencies {
-    minecraft "com.mojang:minecraft:${stonecutter.current().version()}"
+    minecraft "com.mojang:minecraft:${stonecutter.current.version}"
     mappings "net.fabricmc:yarn:${property("deps.yarn")}:v2"
     modImplementation "net.fabricmc:fabric-loader:${property("deps.fabric_loader")}"
     modImplementation("net.fabricmc:fabric-language-kotlin:${property("deps.flk")}+kotlin.${kotlin_version}")
     modImplementation "net.fabricmc.fabric-api:fabric-api:${property("deps.fabric_api")}"
 
     modApi "com.terraformersmc:modmenu:${property("deps.modmenu")}"
-    modImplementation "fi.dy.masa.malilib:malilib-fabric-${stonecutter.current().version()}:${property("deps.malilib")}"
+    modImplementation "fi.dy.masa.malilib:malilib-fabric-${stonecutter.current.version}:${property("deps.malilib")}"
 }
 
 def target = ">=${project.property("mod.min_target")}- <=${project.property("mod.max_target")}"
@@ -128,7 +128,7 @@ publishing {
         mavenJava(MavenPublication) {
             groupId = "${group}.${archivesBaseName}"
             artifactId = property("mod.version")
-            version = stonecutter.current().version()
+            version = stonecutter.current.version
 
             from components.java
             artifact dokkaJavadocJar
@@ -159,7 +159,7 @@ sourceSets {
     }
 }
 
-if (stonecutter.current().isActiveVersion()) {
+if (stonecutter.current.isActive()) {
     loom {
         runConfigs.client {
             ideConfigGenerated = true
@@ -188,7 +188,7 @@ if (stonecutter.current().isActiveVersion()) {
 publishMods {
     file = remapJar.archiveFile
     additionalFiles.from(remapSourcesJar.archiveFile)
-    displayName = "${project.property("mod.display")} ${project.property("mod.version")} for ${stonecutter.current().version()}"
+    displayName = "${project.property("mod.display")} ${project.property("mod.version")} for ${stonecutter.current.version}"
     version = project.version
     changelog = getRootProject().file("CHANGELOG.md").text
     type = STABLE
