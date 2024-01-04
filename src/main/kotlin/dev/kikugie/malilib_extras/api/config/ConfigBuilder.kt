@@ -2,6 +2,7 @@ package dev.kikugie.malilib_extras.api.config
 
 import kotlin.reflect.KClass
 import dev.kikugie.malilib_extras.api.annotation.*
+import dev.kikugie.malilib_extras.api.restriction.RestrictionChecker
 import dev.kikugie.malilib_extras.util.TranslationKey
 
 /**
@@ -31,6 +32,7 @@ interface ConfigBuilder {
      * Translation key formatter for category descriptions. Defaults to `$id.config.title.$category.desc`.
      */
     var categoryDescriptionKey: (String) -> TranslationKey
+    var restrictionChecker: RestrictionChecker
 
     /**
      * Registers fields from a config class. Class **must** be annotated with @[Category].

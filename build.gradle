@@ -58,7 +58,6 @@ dependencies {
 
     modApi "com.terraformersmc:modmenu:${property("deps.modmenu")}"
     modImplementation "fi.dy.masa.malilib:malilib-fabric-${stonecutter.current().version()}:${property("deps.malilib")}"
-    include modImplementation("com.github.Fallen-Breath:conditional-mixin:v${property("deps.conditional_mixin")}")
 }
 
 def target = ">=${project.property("mod.min_target")}- <=${project.property("mod.max_target")}"

@@ -9,3 +9,7 @@ typealias TranslationKey = String
 fun TranslationKey.translate(vararg args: String): String {
     return StringUtils.translate(this, args)
 }
+
+fun TranslationKey.translation(vararg args: String): () -> String {
+    return { StringUtils.translate(this, args) }
+}

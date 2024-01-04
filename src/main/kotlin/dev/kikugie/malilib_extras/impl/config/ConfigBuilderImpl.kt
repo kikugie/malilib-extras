@@ -2,14 +2,13 @@ package dev.kikugie.malilib_extras.impl.config
 
 import dev.kikugie.malilib_extras.MalilibExtras
 import dev.kikugie.malilib_extras.api.annotation.Category
-import dev.kikugie.malilib_extras.api.annotation.DevOnly
 import dev.kikugie.malilib_extras.api.annotation.Exclude
 import dev.kikugie.malilib_extras.api.config.ConfigBuilder
 import dev.kikugie.malilib_extras.api.config.ConfigEntry
 import dev.kikugie.malilib_extras.api.config.MalilibConfig
-import dev.kikugie.malilib_extras.util.restriction.SimpleRestrictionChecker
+import dev.kikugie.malilib_extras.api.restriction.Restriction
+import dev.kikugie.malilib_extras.api.restriction.RestrictionChecker
 import fi.dy.masa.malilib.config.IConfigBase
-import me.fallenbreath.conditionalmixin.api.annotation.Restriction
 import kotlin.reflect.KClass
 import kotlin.reflect.KProperty
 import kotlin.reflect.full.declaredMemberProperties
@@ -19,11 +18,12 @@ class ConfigBuilderImpl(override val id: String, override var version: String = 
     override var titleKey: String = "$id.config.title"
     override var categoryKey: (String) -> String = { "$id.config.title.$it" }
     override var categoryDescriptionKey: (String) -> String = { "$id.config.title.$it.desc" }
+    override var restrictionChecker: RestrictionChecker = RestrictionChecker.standard
 
     private val categories = mutableMapOf<String, MutableList<ConfigEntry>>().withDefault { ArrayList() }
     private val options = ArrayList<ConfigEntry>()
-    override fun register(vararg classes: KClass<*>) {
-        classes.forEach { processClass(it) }
+    override fun register(vararg categories: KClass<*>) {
+        categories.forEach { processClass(it) }
     }
 
     fun build(): MalilibConfig {
@@ -74,11 +74,12 @@ class ConfigBuilderImpl(override val id: String, override var version: String = 
             return null
         }
 
+        val restriction = field.findAnnotation<Restriction>()
         return ConfigEntryImpl(
             value,
-            field.findAnnotation<Restriction>(),
-            SimpleRestrictionChecker.test(field),
-            field.findAnnotation<DevOnly>() != null
+            restriction,
+            restrictionChecker.testRestriction(restriction),
+            false
         )
     }
 
