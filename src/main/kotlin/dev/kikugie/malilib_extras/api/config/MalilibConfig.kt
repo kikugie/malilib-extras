@@ -1,10 +1,8 @@
 package dev.kikugie.malilib_extras.api.config
 
-import dev.kikugie.malilib_extras.api.annotation.Category
 import dev.kikugie.malilib_extras.api.option.OptionFactory
 import dev.kikugie.malilib_extras.impl.config.ConfigBuilderImpl
 import dev.kikugie.malilib_extras.util.TranslationKey
-import fi.dy.masa.malilib.config.IConfigBase
 
 /**
  * Represents the finalized options and categories of the config.

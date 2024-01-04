@@ -1,7 +1,6 @@
 package dev.kikugie.malilib_extras.api.config
 
 import kotlin.reflect.KClass
-import dev.kikugie.malilib_extras.api.annotation.*
 import dev.kikugie.malilib_extras.api.restriction.RestrictionChecker
 import dev.kikugie.malilib_extras.util.TranslationKey
 

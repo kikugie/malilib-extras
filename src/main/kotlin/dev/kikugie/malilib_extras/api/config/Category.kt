@@ -1,4 +1,4 @@
-package dev.kikugie.malilib_extras.api.annotation
+package dev.kikugie.malilib_extras.api.config
 
 /**
  * Specifies tab the annotated class will be assigned to.

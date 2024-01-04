@@ -1,4 +1,4 @@
-package dev.kikugie.malilib_extras.api.annotation
+package dev.kikugie.malilib_extras.api.config
 
 /**
  * Excludes a field from being registered.

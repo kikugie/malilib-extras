@@ -1,6 +1,6 @@
 package dev.kikugie.testmod
 
-import dev.kikugie.malilib_extras.api.annotation.Category
+import dev.kikugie.malilib_extras.api.config.Category
 import dev.kikugie.malilib_extras.api.option.OptionFactory
 import fi.dy.masa.malilib.config.options.ConfigBoolean
 import fi.dy.masa.malilib.config.options.ConfigInteger

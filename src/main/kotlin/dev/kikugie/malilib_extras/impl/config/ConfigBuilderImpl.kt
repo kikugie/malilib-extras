@@ -1,8 +1,8 @@
 package dev.kikugie.malilib_extras.impl.config
 
 import dev.kikugie.malilib_extras.MalilibExtras
-import dev.kikugie.malilib_extras.api.annotation.Category
-import dev.kikugie.malilib_extras.api.annotation.Exclude
+import dev.kikugie.malilib_extras.api.config.Category
+import dev.kikugie.malilib_extras.api.config.Exclude
 import dev.kikugie.malilib_extras.api.config.ConfigBuilder
 import dev.kikugie.malilib_extras.api.config.ConfigEntry
 import dev.kikugie.malilib_extras.api.config.MalilibConfig
