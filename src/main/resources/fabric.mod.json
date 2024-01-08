@@ -32,7 +32,6 @@
   "depends": {
     "minecraft": "${target_minecraft}",
     "fabric-language-kotlin": ">=${flk}",
-    "fabric-api": "*",
     "malilib": "~${malilib}"
   },
   "custom": {

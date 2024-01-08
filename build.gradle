@@ -187,7 +187,7 @@ if (stonecutter.current.isActive()) {
 
 publishMods {
     file = remapJar.archiveFile
-    additionalFiles.from(remapSourcesJar.archiveFile)
+    additionalFiles.from(remapSourcesJar.archiveFile, dokkaJavadocJar.archiveFile)
     displayName = "${project.property("mod.display")} ${project.property("mod.version")} for ${stonecutter.current.version}"
     version = project.version
     changelog = getRootProject().file("CHANGELOG.md").text
@@ -213,7 +213,10 @@ publishMods {
         }
 
         requires {
-            slug = "fabric-api"
+            slug = "fabric-language-kotlin"
+        }
+        requires {
+            slug = "malilib"
         }
     }
 }
