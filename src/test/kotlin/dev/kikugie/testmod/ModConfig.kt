@@ -5,6 +5,7 @@ import dev.kikugie.malilib_extras.api.option.OptionFactory
 import dev.kikugie.malilib_extras.api.restriction.Condition
 import dev.kikugie.malilib_extras.api.restriction.Restriction
 import fi.dy.masa.malilib.config.options.ConfigBoolean
+import fi.dy.masa.malilib.config.options.ConfigHotkey
 import fi.dy.masa.malilib.config.options.ConfigInteger
 
 const val GENERAL = "general"
@@ -23,5 +24,8 @@ object ModConfig {
         min = 0
         max = 10
         slider = true
+    }
+    val keyOpt = factory.create<ConfigHotkey>("keyOpt", "") {
+        println()
     }
 }

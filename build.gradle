@@ -53,11 +53,11 @@ dependencies {
     minecraft "com.mojang:minecraft:${stonecutter.current.version}"
     mappings "net.fabricmc:yarn:${property("deps.yarn")}:v2"
     modImplementation "net.fabricmc:fabric-loader:${property("deps.fabric_loader")}"
-    modImplementation("net.fabricmc:fabric-language-kotlin:${property("deps.flk")}+kotlin.${kotlin_version}")
+    modImplementation "net.fabricmc:fabric-language-kotlin:${property("deps.flk")}+kotlin.${kotlin_version}"
     modImplementation "net.fabricmc.fabric-api:fabric-api:${property("deps.fabric_api")}"
 
     modApi "com.terraformersmc:modmenu:${property("deps.modmenu")}"
-    modImplementation "fi.dy.masa.malilib:malilib-fabric-${stonecutter.current.version}:${property("deps.malilib")}"
+    modApi "fi.dy.masa.malilib:malilib-fabric-${stonecutter.current.version}:${property("deps.malilib")}"
 }
 
 def target = ">=${project.property("mod.min_target")}- <=${project.property("mod.max_target")}"

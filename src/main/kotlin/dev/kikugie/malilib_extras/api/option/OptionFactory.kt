@@ -3,7 +3,6 @@ package dev.kikugie.malilib_extras.api.option
 import dev.kikugie.malilib_extras.impl.option.*
 import dev.kikugie.malilib_extras.util.TranslationKey
 import fi.dy.masa.malilib.config.options.*
-import fi.dy.masa.malilib.hotkeys.KeybindSettings
 import fi.dy.masa.malilib.util.Color4f
 
 /**
@@ -59,16 +58,23 @@ class OptionFactory(
     fun <T : ConfigColor> create(name: String, default: Color4f, init: ColorWrapper.() -> Unit = { }) =
         ColorWrapper(name, default).apply(::formatters).apply(init).get()
 
-    fun <T : ConfigHotkey> create(name: String, keybind: String, init: HotkeyWrapper.() -> Unit) =
-        HotkeyWrapper(name, keybind).apply(::formatters).apply(init).get()
+    fun <T : ConfigHotkey> create(
+        name: String,
+        keybind: String,
+        callback: () -> Unit,
+        init: HotkeyWrapper.() -> Unit
+    ) =
+        HotkeyWrapper(name, keybind)
+            .apply(::formatters)
+            .apply { this.callback = callback }
+            .apply(init)
+            .get()
 
     fun <T : ConfigHotkey> create(
         name: String,
         keybind: String,
-        settings: KeybindSettings,
-        callback: () -> Boolean
+        callback: () -> Unit
     ) = HotkeyWrapper(name, keybind).apply(::formatters).apply {
-        this.settings = settings
         this.callback = callback
     }.get()
 
@@ -76,17 +82,20 @@ class OptionFactory(
         name: String,
         default: Boolean,
         keybind: String,
+        callback: () -> Unit,
         init: BooleanHotkeyWrapper.() -> Unit
-    ) = BooleanHotkeyWrapper(name, default, keybind).apply(::formatters).apply(init).get()
+    ) = BooleanHotkeyWrapper(name, default, keybind)
+        .apply(::formatters)
+        .apply { this.callback = callback }
+        .apply(init)
+        .get()
 
     fun <T : ConfigBooleanHotkeyed> create(
         name: String,
         default: Boolean,
         keybind: String,
-        settings: KeybindSettings,
-        callback: () -> Boolean
+        callback: () -> Unit
     ) = BooleanHotkeyWrapper(name, default, keybind).apply(::formatters).apply {
-        this.settings = settings
         this.callback = callback
     }.get()
 

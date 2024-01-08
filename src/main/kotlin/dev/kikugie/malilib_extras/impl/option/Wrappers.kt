@@ -45,19 +45,19 @@ class ColorWrapper(name: String, val default: Color4f) : BaseWrapper<ConfigColor
 
 class HotkeyWrapper(name: String, val keybind: String) : BaseWrapper<ConfigHotkey>(name) {
     var settings: KeybindSettings = KeybindSettings.DEFAULT
-    var callback: () -> Boolean = {true}
+    var callback: () -> Unit = {}
     override fun get() = ConfigHotkey(name, keybind, settings, descriptionTranslation).apply {
         fixTranslations()
-        keybind.setCallback { _, _ -> callback() }
+        keybind.setCallback { _, _ -> callback(); true }
     }
 }
 
 class BooleanHotkeyWrapper(name: String, val default: Boolean, val keybind: String) : BaseWrapper<ConfigBooleanHotkeyed>(name) {
     var settings: KeybindSettings = KeybindSettings.DEFAULT
-    var callback: () -> Boolean = { true }
+    var callback: () -> Unit = {}
     override fun get() =
         ConfigBooleanHotkeyed(name, default, keybind, settings, descriptionTranslation, nameTranslation).apply {
             fixTranslations()
-            keybind.setCallback { _, _ -> callback() }
+            keybind.setCallback { _, _ -> callback(); true }
         }
 }
